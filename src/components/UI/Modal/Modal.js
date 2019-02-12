@@ -1,6 +1,7 @@
 import React from 'react';
 import './Modal.css';
 import Backdrop from "../Backdrop/Backdrop";
+import Button from '../Button/Button';
 
 
 const Modal = props => (
@@ -11,6 +12,8 @@ const Modal = props => (
             <h3>{props.title}</h3>
             <hr/>
             <p>{props.modaltext}</p>
+
+            {props.children}
 
         </div>
     </div>

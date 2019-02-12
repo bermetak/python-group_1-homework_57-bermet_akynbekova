@@ -2,12 +2,15 @@ import React from "react";
 import './Button.css';
 
 const Button = props => (
+
+
     <button
         onClick={props.clicked}
-        className={['Button', props.btnType].join(' ')}
+        className={props.type}
     >
-        {props.children}
+        {props.label}
     </button>
 );
+
 
 export default Button;
