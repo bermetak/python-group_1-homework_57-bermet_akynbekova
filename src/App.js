@@ -13,15 +13,15 @@ class App extends Component {
         this.state = {
             showModal: false,
             showAlert: false,
-            clickDismissable: true,
-            alertCancelTime: 2000,
+            clickDismissable: false,
+            alertCancelTime: 0,
             title: 'Some kinda modal title',
             modalText: 'Модалка',
             alertText: 'Алерт',
-            danger: ' alert-danger',
-            success: ' alert-success',
-            primary: ' alert-primary',
-            warning: ' alert-warning',
+            danger: 'alert-danger',
+            success: 'alert-success',
+            primary: 'alert-primary',
+            warning: 'alert-warning',
 
     }};
 
@@ -42,6 +42,12 @@ class App extends Component {
 
     continued = () => {
         alert('Continue')
+    };
+
+    autoCancelAlert = () => {
+        this.showAlert();
+        if (this.state.alertCancelTime > 0) {
+            return setTimeout(this.cancelAlert, this.state.alertCancelTime)}
     };
 
     render() {
@@ -65,7 +71,10 @@ class App extends Component {
                     </Button>
 
                 </Modal>
-                <OrderButton click={this.showAlert} text={this.state.alertText}/>
+                <OrderButton
+
+                    click={this.autoCancelAlert}
+                    text={this.state.alertText}/>
                  <Alert
                     show={this.state.showAlert}
                     type={this.state.warning}
@@ -73,7 +82,6 @@ class App extends Component {
                     dismiss={this.cancelAlert}
                     clickDismissable={this.state.clickDismissable}
                     alerttext={this.state.alertText}
-                    timeDismiss={this.state.alertCancelTime}
                 >
 
                 </Alert>
