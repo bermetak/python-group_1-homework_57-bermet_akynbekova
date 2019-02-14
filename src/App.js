@@ -14,6 +14,7 @@ class App extends Component {
             showModal: false,
             showAlert: false,
             clickDismissable: true,
+            alertCancelTime: 2000,
             title: 'Some kinda modal title',
             modalText: 'Модалка',
             alertText: 'Алерт',
@@ -21,10 +22,7 @@ class App extends Component {
             success: ' alert-success',
             primary: ' alert-primary',
             warning: ' alert-warning',
-            buttonConfig: [
-              {type: 'primary', label: 'Continue', clicked: this.continued},
-              {type: 'danger', label: 'Close', clicked: this.cancelModal}
-            ]
+
     }};
 
     showModal = () => {
@@ -47,6 +45,13 @@ class App extends Component {
     };
 
     render() {
+        const buttonRow = [
+              {type: 'primary', label: 'Continue', clicked: this.continued},
+              {type: 'danger', label: 'Close', clicked: this.cancelModal}
+            ];
+
+
+
         return (
             <div className="App">
                 <OrderButton click={this.showModal} text={this.state.modalText}/>
@@ -56,23 +61,19 @@ class App extends Component {
                     title={this.state.title}
                     modaltext={this.state.modalText}
                 >
-                    {this.state.buttonConfig.map((item) => {
-                        return <Button
-                                    type={item.type}
-                                    label={item.label}
-                                    clicked={item.clicked}
-                                >
-                                </Button>
-                        })}
+                    <Button buttons={buttonRow}>
+                    </Button>
+
                 </Modal>
                 <OrderButton click={this.showAlert} text={this.state.alertText}/>
                  <Alert
                     show={this.state.showAlert}
-                    type={this.state.danger}
-                    dismiss={undefined}
-                    // dismiss={this.cancelAlert}
+                    type={this.state.warning}
+                    // dismiss={undefined}
+                    dismiss={this.cancelAlert}
                     clickDismissable={this.state.clickDismissable}
                     alerttext={this.state.alertText}
+                    timeDismiss={this.state.alertCancelTime}
                 >
 
                 </Alert>

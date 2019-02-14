@@ -3,22 +3,31 @@ import './Alert.css'
 
 
 
-const Alert = props => (
-        <div className={"Alert" + (props.show ? ' Alert-show' : '') + props.type}
-             onClick={props.clickDismissable ? props.dismiss : null}>
+function Alert (props) {
+    return (
+    <div className={"Alert" + (props.show ? ' Alert-show' : '') + props.type}
+        // onClick={props.clickDismissable ? props.dismiss : null}
+         onClick={props.timeDismiss <= 0 ? null : setTimeout(props.dismiss, props.timeDismiss)}
 
 
-            {props.dismiss === undefined ? null :
+    >
+
+
+        {props.dismiss === undefined ? null :
+
 
             <button onClick={props.dismiss}
                     style={{display: props.clickDismissable ? ' none' : ' inline-block'}}
                     className={'close'}
-            >x</button>}
+            >x
+            </button>
+        }
 
-            <p>{props.alerttext}</p>
-        </div>
+        <p>{props.alerttext}</p>
+    </div>
 
-);
+    )
+};
 
 
 export default Alert;
