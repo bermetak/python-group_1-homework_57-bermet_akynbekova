@@ -78,7 +78,6 @@ class App extends Component {
                  <Alert
                     show={this.state.showAlert}
                     type={this.state.warning}
-                    // dismiss={undefined}
                     dismiss={this.cancelAlert}
                     clickDismissable={this.state.clickDismissable}
                     alerttext={this.state.alertText}
